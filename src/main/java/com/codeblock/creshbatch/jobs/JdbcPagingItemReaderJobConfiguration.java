@@ -1,7 +1,7 @@
 package com.codeblock.creshbatch.jobs;
 
 
-import com.codeblock.creshbatch.domain.model.Pay;
+import com.codeblock.creshbatch.domain.dao.Pay;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

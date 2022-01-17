@@ -1,4 +1,4 @@
-package com.codeblock.creshbatch.domain.model;
+package com.codeblock.creshbatch.domain.dao;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +19,7 @@ public class Pay {
     private Long amount;
     private String txName;
     private LocalDateTime txDateTime;
+    private String successState;
 
     public Pay(Long amount, String txName, String txDateTime) {
         this.amount = amount;
@@ -31,5 +32,13 @@ public class Pay {
         this.amount = amount;
         this.txName = txName;
         this.txDateTime = LocalDateTime.parse(txDateTime, FORMATTER);
+    }
+
+    public Pay(Long id, Long amount, String txName, LocalDateTime txDateTime, String successState) {
+        this.id = id;
+        this.amount = amount;
+        this.txName = txName;
+        this.txDateTime = txDateTime;
+        this.successState = successState;
     }
 }
