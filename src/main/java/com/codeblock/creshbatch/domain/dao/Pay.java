@@ -18,23 +18,29 @@ public class Pay {
     private Long id;
     private Long amount;
     private String txName;
-    private LocalDateTime txDateTime;
+    private String txDateTime;
     private String successState;
 
     public Pay(Long amount, String txName, String txDateTime) {
         this.amount = amount;
         this.txName = txName;
-        this.txDateTime = LocalDateTime.parse(txDateTime, FORMATTER);
+        this.txDateTime = txDateTime;
     }
 
     public Pay(Long id, Long amount, String txName, String txDateTime) {
         this.id = id;
         this.amount = amount;
         this.txName = txName;
-        this.txDateTime = LocalDateTime.parse(txDateTime, FORMATTER);
+        this.txDateTime = txDateTime;
     }
 
-    public Pay(Long id, Long amount, String txName, LocalDateTime txDateTime, String successState) {
+    public Pay(Long amount, String txName, String txDateTime, String successState) {
+        this.amount = amount;
+        this.txName = txName;
+        this.txDateTime = txDateTime;
+        this.successState = successState;
+    }
+    public Pay(Long id, Long amount, String txName, String txDateTime, String successState) {
         this.id = id;
         this.amount = amount;
         this.txName = txName;
