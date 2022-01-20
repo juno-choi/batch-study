@@ -3,6 +3,7 @@ package com.codeblock.creshbatch.config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -51,12 +52,11 @@ public class DataSourceConfig {
     }
     //(3) DataSource 정보 세팅 method
     private DataSource getDataSource(String driverClassName, String jdbcUrl, String jdbcUserName, String jdbcPassword) {
-        HikariConfig hikariConfig = new HikariConfig(); //(4) Spring Boot 기본적으로 HikariCP를 사용
-        hikariConfig.setJdbcUrl(jdbcUrl);
-        hikariConfig.setDriverClassName(driverClassName);
-        hikariConfig.setUsername(jdbcUserName);
-        hikariConfig.setPassword(jdbcPassword);
-
-        return new HikariDataSource(hikariConfig);  //(5) 세팅된 정보를 DataSource 만들어서 반환
+        return DataSourceBuilder.create()
+                .url(jdbcUrl)
+                .username(jdbcUserName)
+                .password(jdbcPassword)
+                .type(HikariDataSource.class)
+                .build();
     }
 }
