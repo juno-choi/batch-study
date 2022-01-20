@@ -1,17 +1,18 @@
 package com.codeblock.creshbatch.repository;
 
 import com.codeblock.creshbatch.domain.dao.Pay;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 public class PayRepository {
-    private final JdbcTemplate jdbc;
+    @Qualifier("serviceDb")
+    private JdbcTemplate jdbc;
 
     public List<Pay> findAll(){
         String sql = "select * from pay";
